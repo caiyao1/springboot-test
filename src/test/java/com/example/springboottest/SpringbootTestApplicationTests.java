@@ -3,8 +3,10 @@ package com.example.springboottest;
 import com.example.springboottest.entity.Course;
 import com.example.springboottest.entity.Elective;
 import com.example.springboottest.entity.Student;
+import com.example.springboottest.repository.ElectiveRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,6 +21,8 @@ import javax.persistence.PersistenceContext;
 @Rollback(value=false)
 public class SpringbootTestApplicationTests {
 
+	@Autowired
+	private ElectiveRepository er;
     @PersistenceContext
 	private EntityManager em;
 	@Test
@@ -41,5 +45,10 @@ public class SpringbootTestApplicationTests {
 		e1.setCourse(c1);
 		e1.setStudent(s1);
 		em.persist(e1);
+	}
+
+	@Test
+	public void addElectiveTest(){
+		er.addElective();
 	}
 }
